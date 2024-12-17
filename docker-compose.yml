@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  server:
+    build: .
+    container_name: berkeley_server
+    command: python berkeley_server.py
+    ports:
+      - "12345:12345"
+
+  client1:
+    build: .
+    container_name: berkeley_client1
+    command: python berkeley_client.py
+    depends_on:
+      - server
+
+  client2:
+    build: .
+    container_name: berkeley_client2
+    command: python berkeley_client.py
+    depends_on:
+      - server
+
+  client3:
+    build: .
+    container_name: berkeley_client3
+    command: python berkeley_client.py
+    depends_on:
+      - server
